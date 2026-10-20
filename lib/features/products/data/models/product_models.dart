@@ -26,6 +26,7 @@ class ReviewModel {
 class DimensionsModel {
   const DimensionsModel({
     required this.width,
+
     required this.height,
     required this.depth,
   });
@@ -40,12 +41,7 @@ class DimensionsModel {
 
 @JsonSerializable()
 class MetaModel {
-  const MetaModel({
-    this.createdAt,
-    this.updatedAt,
-    this.barcode,
-    this.qrCode,
-  });
+  const MetaModel({this.createdAt, this.updatedAt, this.barcode, this.qrCode});
 
   final String? createdAt;
   final String? updatedAt;

@@ -1,0 +1,44 @@
+{
+  "id": 1,
+  "title": "iPhone 9",
+  "description": "An apple mobile which is nothing like apple",
+  "price": 549.99,
+  "discountPercentage": 12.96,
+  "rating": 4.69,
+  "stock": 94,
+  "brand": "Apple",
+  "category": "smartphones",
+  "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg",
+  "images": [
+    "https://cdn.dummyjson.com/product-images/1/1.jpg",
+    "https://cdn.dummyjson.com/product-images/1/2.jpg"
+  ],
+  "reviews": [
+    {
+      "rating": 5,
+      "comment": "Very satisfied!",
+      "date": "2024-05-23T08:56:21.618Z",
+      "reviewerName": "John Doe",
+      "reviewerEmail": "john.doe@x.dummyjson.com"
+    }
+  ],
+  "dimensions": {
+    "width": 7.26,
+    "height": 15.9,
+    "depth": 0.83
+  },
+  "meta": {
+    "createdAt": "2024-05-23T08:56:21.618Z",
+    "updatedAt": "2024-05-23T08:56:21.618Z",
+    "barcode": "1234567890",
+    "qrCode": "https://dummyjson.com/public/qr-code.png"
+  },
+  "tags": ["smartphones", "apple"],
+  "sku": "A-MPHn-RA",
+  "weight": 5,
+  "warrantyInformation": "1 Month Warranty",
+  "shippingInformation": "Ships in 1 month",
+  "availabilityStatus": "In Stock",
+  "returnPolicy": "30 days return policy",
+  "minimumOrderQuantity": 1
+}
