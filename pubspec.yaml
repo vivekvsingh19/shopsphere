@@ -1,0 +1,60 @@
+name: shopsphere
+description: "ShopSphere — A polished Flutter e-commerce app for the Prosessed intern assignment."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Navigation
+  go_router: ^14.8.1
+
+  # HTTP
+  dio: ^5.8.0+1
+
+  # Secure storage
+  flutter_secure_storage: ^9.2.2
+
+  # Local persistence
+  shared_preferences: ^2.3.3
+
+  # Image caching
+  cached_network_image: ^3.4.1
+
+  # Skeleton loading
+  shimmer: ^3.0.0
+
+  # Typography
+  google_fonts: ^6.2.1
+
+  # JSON
+  json_annotation: ^4.9.0
+
+  # Icons (extra)
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+  # Code generation
+  build_runner: ^2.4.13
+  riverpod_generator: ^2.6.1
+  json_serializable: ^6.8.0
+
+  # Testing
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
