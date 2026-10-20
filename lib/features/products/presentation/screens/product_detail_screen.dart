@@ -89,11 +89,11 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                       itemBuilder: (_, i) => CachedNetworkImage(
                         imageUrl: product.images[i],
                         fit: BoxFit.contain,
-                        placeholder: (_, __) => Container(
+                        placeholder: (_, _) => Container(
                           color: colorScheme.surfaceContainerHighest,
                           child: const Center(child: CircularProgressIndicator()),
                         ),
-                        errorWidget: (_, __, ___) => Container(
+                        errorWidget: (_, __, _) => Container(
                           color: colorScheme.surfaceContainerHighest,
                           child: Icon(Icons.broken_image_outlined, size: 64, color: colorScheme.onSurfaceVariant),
                         ),

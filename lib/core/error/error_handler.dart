@@ -25,6 +25,7 @@ abstract final class ErrorHandler {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
+      case DioExceptionType.transformTimeout:
         return const TimeoutError();
 
       case DioExceptionType.connectionError:

@@ -42,7 +42,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   Future<void> _checkSession() async {
     // Minimum splash duration for brand presentation
-    await Future.delayed(const Duration(milliseconds: 1800));
+    await Future<void>.delayed(const Duration(milliseconds: 1800));
     if (mounted) {
       await ref.read(authNotifierProvider.notifier).checkSession();
     }

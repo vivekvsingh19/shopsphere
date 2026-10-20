@@ -62,7 +62,7 @@ class ProductModel {
     required this.discountPercentage,
     required this.rating,
     required this.stock,
-    required this.brand,
+    this.brand,
     required this.category,
     required this.thumbnail,
     required this.images,

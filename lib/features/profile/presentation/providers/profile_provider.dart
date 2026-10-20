@@ -5,7 +5,7 @@ import '../../../auth/data/datasources/auth_remote_datasource.dart';
 import '../../../auth/data/repositories/auth_repository_impl.dart';
 import '../../../auth/domain/entities/user.dart';
 import '../../../auth/domain/repositories/auth_repository.dart';
-import '../../../auth/presentation/providers/auth_provider.dart';
+
 
 final profileRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepositoryImpl(

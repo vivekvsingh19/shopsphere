@@ -21,8 +21,6 @@ const kOrderConfirmationPath = '/order-confirmation';
 const kProfilePath = '/profile';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
-  final authNotifier = ref.watch(authNotifierProvider.notifier);
-
   return GoRouter(
     initialLocation: kSplashPath,
     refreshListenable: _AuthStateListenable(ref),

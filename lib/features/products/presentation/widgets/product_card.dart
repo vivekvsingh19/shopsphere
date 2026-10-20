@@ -35,14 +35,14 @@ class ProductCard extends StatelessWidget {
                   CachedNetworkImage(
                     imageUrl: product.thumbnail,
                     fit: BoxFit.cover,
-                    placeholder: (_, __) => Container(
+                    placeholder: (_, _) => Container(
                       color: colorScheme.surfaceContainerHighest,
                       child: Icon(
                         Icons.image_outlined,
                         color: colorScheme.onSurfaceVariant,
                       ),
                     ),
-                    errorWidget: (_, __, ___) => Container(
+                    errorWidget: (_, __, _) => Container(
                       color: colorScheme.surfaceContainerHighest,
                       child: Icon(
                         Icons.broken_image_outlined,
@@ -72,7 +72,7 @@ class ProductCard extends StatelessWidget {
                   if (!product.inStock)
                     Positioned.fill(
                       child: Container(
-                        color: Colors.black.withOpacity(0.45),
+                        color: Colors.black.withValues(alpha: 0.45),
                         child: Center(
                           child: Container(
                             padding: const EdgeInsets.symmetric(

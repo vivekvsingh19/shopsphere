@@ -48,7 +48,6 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
   Widget build(BuildContext context) {
     final cartCount = ref.watch(cartItemCountProvider);
     final layoutWidth = MediaQuery.sizeOf(context).width;
-    final isCompact = layoutWidth < 600;
     final isMedium = layoutWidth >= 600 && layoutWidth < 840;
     final isExpanded = layoutWidth >= 840;
 
@@ -258,7 +257,7 @@ class _CatalogueBody extends ConsumerWidget {
                 onSelected: notifier.setCategory,
               ),
               loading: () => const SizedBox(height: 48),
-              error: (_, __) => const SizedBox.shrink(),
+              error: (_, _) => const SizedBox.shrink(),
             ),
           ),
 
@@ -308,7 +307,7 @@ class _CatalogueBody extends ConsumerWidget {
                   mainAxisSpacing: 12,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  (_, __) => const ProductCardSkeleton(),
+                  (_, _) => const ProductCardSkeleton(),
                   childCount: 8,
                 ),
               ),
@@ -396,15 +395,21 @@ class _CatalogueBody extends ConsumerWidget {
                 ),
               ),
               ...ProductSort.values.map(
-                (sort) => RadioListTile<ProductSort>(
+                (sort) => ListTile(
+                  leading: Radio<ProductSort>(
+                    value: sort,
+                    groupValue: current,
+                    onChanged: (s) {
+                      if (s != null) {
+                        notifier.setSort(s);
+                        Navigator.pop(context);
+                      }
+                    },
+                  ),
                   title: Text(sort.label),
-                  value: sort,
-                  groupValue: current,
-                  onChanged: (s) {
-                    if (s != null) {
-                      notifier.setSort(s);
-                      Navigator.pop(context);
-                    }
+                  onTap: () {
+                    notifier.setSort(sort);
+                    Navigator.pop(context);
                   },
                 ),
               ),
@@ -436,7 +441,7 @@ class _CategoryBar extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         itemCount: categories.length + 1,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
           if (index == 0) {
             return FilterChip(
@@ -445,7 +450,7 @@ class _CategoryBar extends StatelessWidget {
               onSelected: (_) => onSelected(null),
             );
           }
-          final cat = categories[index - 1] as Category;
+          final cat = categories[index - 1];
           final slug = cat.slug;
           final name = cat.name;
           return FilterChip(
