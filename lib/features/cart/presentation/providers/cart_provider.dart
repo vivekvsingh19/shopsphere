@@ -44,12 +44,11 @@ class CheckoutFailure extends CheckoutState {
 // ─── Cart notifier ────────────────────────────────────────────────────────
 
 class CartNotifier extends StateNotifier<List<CartItem>> {
-  CartNotifier(this._local, this._remote) : super(const []) {
+  CartNotifier(this._local) : super(const []) {
     _loadFromDisk();
   }
 
   final CartLocalDataSource _local;
-  final CartRemoteDataSource _remote;
 
   void _loadFromDisk() {
     state = _local.loadCart();
@@ -117,7 +116,6 @@ final cartNotifierProvider =
     StateNotifierProvider<CartNotifier, List<CartItem>>((ref) {
   return CartNotifier(
     ref.watch(cartLocalDataSourceProvider),
-    ref.watch(cartRemoteDataSourceProvider),
   );
 });
 

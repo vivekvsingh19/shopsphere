@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../data/models/auth_models.dart';
+import '../models/auth_models.dart';
 
 /// Remote data source — all DummyJSON auth endpoints.
 class AuthRemoteDataSource {

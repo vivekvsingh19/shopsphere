@@ -116,7 +116,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                             decoration: BoxDecoration(
                               color: i == _currentImageIndex
                                   ? colorScheme.primary
-                                  : colorScheme.onSurface.withOpacity(0.25),
+                                  : colorScheme.onSurface.withValues(alpha: 0.25),
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),

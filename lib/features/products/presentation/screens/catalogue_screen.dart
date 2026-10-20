@@ -6,10 +6,11 @@ import '../../../../core/router/app_router.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/empty_state_widget.dart';
 import '../../../../core/widgets/loading_skeleton.dart';
-import '../../../auth/presentation/providers/auth_provider.dart';
+
 import '../../../cart/presentation/providers/cart_provider.dart';
 import '../providers/products_provider.dart';
 import '../widgets/product_card.dart';
+import '../../domain/entities/product.dart';
 
 class CatalogueScreen extends ConsumerStatefulWidget {
   const CatalogueScreen({super.key});
@@ -423,7 +424,7 @@ class _CategoryBar extends StatelessWidget {
     required this.onSelected,
   });
 
-  final List<dynamic> categories;
+  final List<Category> categories;
   final String? selected;
   final void Function(String?) onSelected;
 
@@ -444,9 +445,9 @@ class _CategoryBar extends StatelessWidget {
               onSelected: (_) => onSelected(null),
             );
           }
-          final cat = categories[index - 1];
-          final slug = cat.slug as String;
-          final name = cat.name as String;
+          final cat = categories[index - 1] as Category;
+          final slug = cat.slug;
+          final name = cat.name;
           return FilterChip(
             label: Text(name),
             selected: selected == slug,

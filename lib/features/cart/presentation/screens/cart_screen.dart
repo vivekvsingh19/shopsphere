@@ -58,7 +58,7 @@ class CartScreen extends ConsumerWidget {
                   child: ListView.separated(
                     padding: const EdgeInsets.all(16),
                     itemCount: items.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 12),
+                    separatorBuilder: (_, _) => const SizedBox(height: 12),
                     itemBuilder: (_, i) => _CartItemCard(item: items[i]),
                   ),
                 ),
@@ -238,7 +238,7 @@ class _CartSummary extends ConsumerWidget {
         color: theme.colorScheme.surface,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
+            color: Colors.black.withValues(alpha: 0.08),
             blurRadius: 16,
             offset: const Offset(0, -4),
           ),

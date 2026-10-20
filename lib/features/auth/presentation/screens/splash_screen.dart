@@ -86,7 +86,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                     borderRadius: BorderRadius.circular(24),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
+                        color: Colors.black.withValues(alpha: 0.2),
                         blurRadius: 24,
                         offset: const Offset(0, 8),
                       ),
@@ -111,7 +111,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 Text(
                   'Everything you need, delivered.',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.white.withOpacity(0.75),
+                        color: Colors.white.withValues(alpha: 0.75),
                       ),
                 ),
               ],

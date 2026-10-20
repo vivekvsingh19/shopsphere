@@ -1,8 +1,8 @@
-import '../../../core/error/error_handler.dart';
-import '../data/datasources/products_remote_datasource.dart';
-import '../data/models/product_models.dart';
-import '../domain/entities/product.dart';
-import '../domain/repositories/products_repository.dart';
+import '../../../../core/error/error_handler.dart';
+import '../datasources/products_remote_datasource.dart';
+import '../models/product_models.dart';
+import '../../domain/entities/product.dart';
+import '../../domain/repositories/products_repository.dart';
 
 class ProductsRepositoryImpl implements ProductsRepository {
   ProductsRepositoryImpl(this._remote);

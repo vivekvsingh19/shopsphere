@@ -130,7 +130,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       child: Column(
                         children: [
                           TextFormField(
-                            id: 'login_username',
                             controller: _usernameController,
                             decoration: const InputDecoration(
                               labelText: 'Username',
@@ -148,7 +147,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                           const SizedBox(height: 16),
                           TextFormField(
-                            id: 'login_password',
                             controller: _passwordController,
                             obscureText: _obscurePassword,
                             decoration: InputDecoration(
@@ -207,7 +205,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       margin: const EdgeInsets.only(bottom: 24),
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.surfaceContainerHighest.withOpacity(0.5),
+                        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
