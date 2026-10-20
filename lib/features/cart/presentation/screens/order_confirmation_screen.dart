@@ -7,7 +7,8 @@ class OrderConfirmationScreen extends StatefulWidget {
   const OrderConfirmationScreen({super.key});
 
   @override
-  State<OrderConfirmationScreen> createState() => _OrderConfirmationScreenState();
+  State<OrderConfirmationScreen> createState() =>
+      _OrderConfirmationScreenState();
 }
 
 class _OrderConfirmationScreenState extends State<OrderConfirmationScreen>
@@ -23,9 +24,10 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen>
       vsync: this,
       duration: const Duration(milliseconds: 800),
     );
-    _scaleAnim = Tween<double>(begin: 0.4, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
-    );
+    _scaleAnim = Tween<double>(
+      begin: 0.4,
+      end: 1.0,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
     _fadeAnim = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,

@@ -9,7 +9,9 @@ sealed class AppError implements Exception {
 
 /// Device has no internet connectivity or the host is unreachable.
 class NetworkError extends AppError {
-  const NetworkError({this.message = 'No internet connection. Please check your network.'});
+  const NetworkError({
+    this.message = 'No internet connection. Please check your network.',
+  });
   final String message;
 
   @override

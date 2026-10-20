@@ -52,8 +52,9 @@ void main() {
 
   group('ProductsRepositoryImpl.getProducts', () {
     test('T25: returns ProductPage on success', () async {
-      when(() => mockDataSource.getProducts(limit: 20, skip: 0))
-          .thenAnswer((_) async => tProductListResponse);
+      when(
+        () => mockDataSource.getProducts(limit: 20, skip: 0),
+      ).thenAnswer((_) async => tProductListResponse);
 
       final result = await repository.getProducts();
 
@@ -62,31 +63,31 @@ void main() {
       expect(result.products.first.title, 'iPhone 9');
     });
 
-    test('T26: maps DioException to NetworkError on connection failure', () async {
-      when(() => mockDataSource.getProducts(limit: 20, skip: 0))
-          .thenThrow(const NetworkError());
+    test(
+      'T26: maps DioException to NetworkError on connection failure',
+      () async {
+        when(
+          () => mockDataSource.getProducts(limit: 20, skip: 0),
+        ).thenThrow(const NetworkError());
 
-      expect(
-        () => repository.getProducts(),
-        throwsA(isA<NetworkError>()),
-      );
-    });
+        expect(() => repository.getProducts(), throwsA(isA<NetworkError>()));
+      },
+    );
 
     test('T27: maps 500 response to ServerError', () async {
-      when(() => mockDataSource.getProducts(limit: 20, skip: 0))
-          .thenThrow(const ServerError(statusCode: 500, message: 'Internal Server Error'));
-
-      expect(
-        () => repository.getProducts(),
-        throwsA(isA<ServerError>()),
+      when(() => mockDataSource.getProducts(limit: 20, skip: 0)).thenThrow(
+        const ServerError(statusCode: 500, message: 'Internal Server Error'),
       );
+
+      expect(() => repository.getProducts(), throwsA(isA<ServerError>()));
     });
   });
 
   group('ProductsRepositoryImpl.getProductById', () {
     test('T28: returns Product on success', () async {
-      when(() => mockDataSource.getProductById(1))
-          .thenAnswer((_) async => tProductModel);
+      when(
+        () => mockDataSource.getProductById(1),
+      ).thenAnswer((_) async => tProductModel);
 
       final product = await repository.getProductById(1);
 
@@ -95,8 +96,9 @@ void main() {
     });
 
     test('T29: throws NotFoundError for non-existent product', () async {
-      when(() => mockDataSource.getProductById(9999))
-          .thenThrow(const NotFoundError(message: 'Product with id "9999" not found'));
+      when(() => mockDataSource.getProductById(9999)).thenThrow(
+        const NotFoundError(message: 'Product with id "9999" not found'),
+      );
 
       expect(
         () => repository.getProductById(9999),
@@ -107,8 +109,9 @@ void main() {
 
   group('ProductsRepositoryImpl.searchProducts', () {
     test('T30: returns matching products for a query', () async {
-      when(() => mockDataSource.searchProducts('phone', limit: 20, skip: 0))
-          .thenAnswer((_) async => tProductListResponse);
+      when(
+        () => mockDataSource.searchProducts('phone', limit: 20, skip: 0),
+      ).thenAnswer((_) async => tProductListResponse);
 
       final result = await repository.searchProducts('phone');
 
@@ -122,8 +125,13 @@ void main() {
         skip: 0,
         limit: 20,
       );
-      when(() => mockDataSource.searchProducts('zzznoresultszzz', limit: 20, skip: 0))
-          .thenAnswer((_) async => emptyResponse);
+      when(
+        () => mockDataSource.searchProducts(
+          'zzznoresultszzz',
+          limit: 20,
+          skip: 0,
+        ),
+      ).thenAnswer((_) async => emptyResponse);
 
       final result = await repository.searchProducts('zzznoresultszzz');
 
@@ -141,8 +149,9 @@ void main() {
           url: 'https://dummyjson.com/products/category/smartphones',
         ),
       ];
-      when(() => mockDataSource.getCategories())
-          .thenAnswer((_) async => tCategories);
+      when(
+        () => mockDataSource.getCategories(),
+      ).thenAnswer((_) async => tCategories);
 
       final result = await repository.getCategories();
 

@@ -13,10 +13,7 @@ class CartRemoteDataSource {
   }) async {
     final response = await _dio.post<Map<String, dynamic>>(
       '/carts/add',
-      data: {
-        'userId': userId,
-        'products': products,
-      },
+      data: {'userId': userId, 'products': products},
     );
     return response.data ?? {};
   }

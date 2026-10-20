@@ -40,14 +40,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
-      GoRoute(
-        path: kSplashPath,
-        builder: (_, __) => const SplashScreen(),
-      ),
-      GoRoute(
-        path: kLoginPath,
-        builder: (_, __) => const LoginScreen(),
-      ),
+      GoRoute(path: kSplashPath, builder: (_, __) => const SplashScreen()),
+      GoRoute(path: kLoginPath, builder: (_, __) => const LoginScreen()),
       GoRoute(
         path: kCataloguePath,
         builder: (_, __) => const CatalogueScreen(),
@@ -59,24 +53,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           return ProductDetailScreen(productId: id);
         },
       ),
-      GoRoute(
-        path: kCartPath,
-        builder: (_, __) => const CartScreen(),
-      ),
+      GoRoute(path: kCartPath, builder: (_, __) => const CartScreen()),
       GoRoute(
         path: kOrderConfirmationPath,
         builder: (_, __) => const OrderConfirmationScreen(),
       ),
-      GoRoute(
-        path: kProfilePath,
-        builder: (_, __) => const ProfileScreen(),
-      ),
+      GoRoute(path: kProfilePath, builder: (_, __) => const ProfileScreen()),
     ],
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(
-        child: Text('Page not found: ${state.uri}'),
-      ),
-    ),
+    errorBuilder: (context, state) =>
+        Scaffold(body: Center(child: Text('Page not found: ${state.uri}'))),
   );
 });
 

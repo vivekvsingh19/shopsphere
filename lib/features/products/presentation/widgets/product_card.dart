@@ -5,11 +5,7 @@ import '../../domain/entities/product.dart';
 
 /// Product card for the catalogue grid.
 class ProductCard extends StatelessWidget {
-  const ProductCard({
-    super.key,
-    required this.product,
-    required this.onTap,
-  });
+  const ProductCard({super.key, required this.product, required this.onTap});
 
   final Product product;
   final VoidCallback onTap;
@@ -55,7 +51,10 @@ class ProductCard extends StatelessWidget {
                       top: 8,
                       left: 8,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 3,
+                        ),
                         decoration: BoxDecoration(
                           color: colorScheme.error,
                           borderRadius: BorderRadius.circular(6),

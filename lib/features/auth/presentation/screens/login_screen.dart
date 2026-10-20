@@ -29,10 +29,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void _submit() {
     ref.read(authNotifierProvider.notifier).clearError();
     if (!_formKey.currentState!.validate()) return;
-    ref.read(authNotifierProvider.notifier).login(
-          _usernameController.text.trim(),
-          _passwordController.text,
-        );
+    ref
+        .read(authNotifierProvider.notifier)
+        .login(_usernameController.text.trim(), _passwordController.text);
   }
 
   @override
@@ -54,7 +53,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: size.height - MediaQuery.of(context).padding.top),
+            constraints: BoxConstraints(
+              minHeight: size.height - MediaQuery.of(context).padding.top,
+            ),
             child: IntrinsicHeight(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -113,9 +114,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   Expanded(
                                     child: Text(
                                       errorMessage,
-                                      style: theme.textTheme.bodyMedium?.copyWith(
-                                        color: theme.colorScheme.onErrorContainer,
-                                      ),
+                                      style: theme.textTheme.bodyMedium
+                                          ?.copyWith(
+                                            color: theme
+                                                .colorScheme
+                                                .onErrorContainer,
+                                          ),
                                     ),
                                   ),
                                 ],
@@ -152,7 +156,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             decoration: InputDecoration(
                               labelText: 'Password',
                               hintText: '••••••••',
-                              prefixIcon: const Icon(Icons.lock_outline_rounded),
+                              prefixIcon: const Icon(
+                                Icons.lock_outline_rounded,
+                              ),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   _obscurePassword
@@ -162,7 +168,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 onPressed: () => setState(
                                   () => _obscurePassword = !_obscurePassword,
                                 ),
-                                tooltip: _obscurePassword ? 'Show password' : 'Hide password',
+                                tooltip: _obscurePassword
+                                    ? 'Show password'
+                                    : 'Hide password',
                               ),
                             ),
                             textInputAction: TextInputAction.done,
@@ -203,9 +211,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     // Test credentials hint
                     Container(
                       margin: const EdgeInsets.only(bottom: 24),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                        color: theme.colorScheme.surfaceContainerHighest
+                            .withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(

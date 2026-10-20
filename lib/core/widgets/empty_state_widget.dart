@@ -34,11 +34,7 @@ class EmptyStateWidget extends StatelessWidget {
                 color: theme.colorScheme.primaryContainer.withOpacity(0.5),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                icon,
-                size: 48,
-                color: theme.colorScheme.primary,
-              ),
+              child: Icon(icon, size: 48, color: theme.colorScheme.primary),
             ),
             const SizedBox(height: 24),
             Text(
@@ -62,9 +58,7 @@ class EmptyStateWidget extends StatelessWidget {
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: onAction,
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(160, 52),
-                ),
+                style: FilledButton.styleFrom(minimumSize: const Size(160, 52)),
                 child: Text(actionLabel!),
               ),
             ],

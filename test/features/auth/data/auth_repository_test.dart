@@ -7,6 +7,7 @@ import 'package:shopsphere/features/auth/data/repositories/auth_repository_impl.
 import 'package:shopsphere/core/storage/secure_storage.dart';
 
 class MockAuthRemoteDataSource extends Mock implements AuthRemoteDataSource {}
+
 class MockSecureStorageService extends Mock implements SecureStorageService {}
 
 void main() {
@@ -34,12 +35,15 @@ void main() {
 
   group('AuthRepositoryImpl.login', () {
     test('T33: returns User on successful login', () async {
-      when(() => mockDataSource.login('emilys', 'emilyspass'))
-          .thenAnswer((_) async => tAuthResponse);
-      when(() => mockStorage.saveTokens(
-            accessToken: any(named: 'accessToken'),
-            refreshToken: any(named: 'refreshToken'),
-          )).thenAnswer((_) async {});
+      when(
+        () => mockDataSource.login('emilys', 'emilyspass'),
+      ).thenAnswer((_) async => tAuthResponse);
+      when(
+        () => mockStorage.saveTokens(
+          accessToken: any(named: 'accessToken'),
+          refreshToken: any(named: 'refreshToken'),
+        ),
+      ).thenAnswer((_) async {});
 
       final user = await repository.login('emilys', 'emilyspass');
 
@@ -48,35 +52,42 @@ void main() {
       expect(user.fullName, 'Emily Johnson');
     });
 
-    test('T34: saves tokens to secure storage after successful login', () async {
-      when(() => mockDataSource.login('emilys', 'emilyspass'))
-          .thenAnswer((_) async => tAuthResponse);
-      when(() => mockStorage.saveTokens(
+    test(
+      'T34: saves tokens to secure storage after successful login',
+      () async {
+        when(
+          () => mockDataSource.login('emilys', 'emilyspass'),
+        ).thenAnswer((_) async => tAuthResponse);
+        when(
+          () => mockStorage.saveTokens(
             accessToken: any(named: 'accessToken'),
             refreshToken: any(named: 'refreshToken'),
-          )).thenAnswer((_) async {});
+          ),
+        ).thenAnswer((_) async {});
 
-      await repository.login('emilys', 'emilyspass');
+        await repository.login('emilys', 'emilyspass');
 
-      verify(() => mockStorage.saveTokens(
+        verify(
+          () => mockStorage.saveTokens(
             accessToken: 'access-token-123',
             refreshToken: 'refresh-token-456',
-          )).called(1);
-    });
+          ),
+        ).called(1);
+      },
+    );
 
     test('T35: throws AuthError on invalid credentials (401)', () async {
-      when(() => mockDataSource.login('bad', 'wrong'))
-          .thenThrow(const AuthError(message: 'Invalid credentials'));
+      when(
+        () => mockDataSource.login('bad', 'wrong'),
+      ).thenThrow(const AuthError(message: 'Invalid credentials'));
 
-      expect(
-        () => repository.login('bad', 'wrong'),
-        throwsA(isA<AuthError>()),
-      );
+      expect(() => repository.login('bad', 'wrong'), throwsA(isA<AuthError>()));
     });
 
     test('T36: throws NetworkError on connection failure', () async {
-      when(() => mockDataSource.login(any(), any()))
-          .thenThrow(const NetworkError());
+      when(
+        () => mockDataSource.login(any(), any()),
+      ).thenThrow(const NetworkError());
 
       expect(
         () => repository.login('emilys', 'emilyspass'),

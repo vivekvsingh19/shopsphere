@@ -8,7 +8,10 @@ const _connectTimeout = Duration(seconds: 15);
 const _receiveTimeout = Duration(seconds: 30);
 
 /// Factory that creates a fully configured [Dio] instance.
-Dio createDio(SecureStorageService storage, Future<void> Function() onUnauthenticated) {
+Dio createDio(
+  SecureStorageService storage,
+  Future<void> Function() onUnauthenticated,
+) {
   final dio = Dio(
     BaseOptions(
       baseUrl: _baseUrl,

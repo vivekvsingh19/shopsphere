@@ -23,10 +23,7 @@ class CartItem {
   double get originalSubtotal => price * quantity;
   double get discount => originalSubtotal - subtotal;
 
-  CartItem copyWith({
-    int? quantity,
-    int? stock,
-  }) {
+  CartItem copyWith({int? quantity, int? stock}) {
     return CartItem(
       productId: productId,
       title: title,
@@ -39,24 +36,24 @@ class CartItem {
   }
 
   Map<String, dynamic> toJson() => {
-        'productId': productId,
-        'title': title,
-        'thumbnail': thumbnail,
-        'price': price,
-        'discountPercentage': discountPercentage,
-        'quantity': quantity,
-        'stock': stock,
-      };
+    'productId': productId,
+    'title': title,
+    'thumbnail': thumbnail,
+    'price': price,
+    'discountPercentage': discountPercentage,
+    'quantity': quantity,
+    'stock': stock,
+  };
 
   factory CartItem.fromJson(Map<String, dynamic> json) => CartItem(
-        productId: json['productId'] as int,
-        title: json['title'] as String,
-        thumbnail: json['thumbnail'] as String,
-        price: (json['price'] as num).toDouble(),
-        discountPercentage: (json['discountPercentage'] as num).toDouble(),
-        quantity: json['quantity'] as int,
-        stock: json['stock'] as int? ?? 0,
-      );
+    productId: json['productId'] as int,
+    title: json['title'] as String,
+    thumbnail: json['thumbnail'] as String,
+    price: (json['price'] as num).toDouble(),
+    discountPercentage: (json['discountPercentage'] as num).toDouble(),
+    quantity: json['quantity'] as int,
+    stock: json['stock'] as int? ?? 0,
+  );
 }
 
 /// Cart totals calculator.

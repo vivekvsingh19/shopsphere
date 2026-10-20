@@ -87,9 +87,7 @@ class AppErrorWidget extends StatelessWidget {
               onPressed: onRetry,
               icon: const Icon(Icons.refresh_rounded),
               label: const Text('Try again'),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size(160, 52),
-              ),
+              style: FilledButton.styleFrom(minimumSize: const Size(160, 52)),
             ),
           ],
         ),

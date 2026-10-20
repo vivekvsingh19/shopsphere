@@ -35,9 +35,18 @@ abstract final class ErrorHandler {
         final statusCode = e.response?.statusCode ?? 0;
         final message = _extractMessage(e.response);
         return switch (statusCode) {
-          401 || 403 => AuthError(message: message.isNotEmpty ? message : 'Authentication failed.'),
-          404 => NotFoundError(message: message.isNotEmpty ? message : 'Resource not found.'),
-          >= 500 => ServerError(statusCode: statusCode, message: message.isNotEmpty ? message : 'Server error. Please try again.'),
+          401 || 403 => AuthError(
+            message: message.isNotEmpty ? message : 'Authentication failed.',
+          ),
+          404 => NotFoundError(
+            message: message.isNotEmpty ? message : 'Resource not found.',
+          ),
+          >= 500 => ServerError(
+            statusCode: statusCode,
+            message: message.isNotEmpty
+                ? message
+                : 'Server error. Please try again.',
+          ),
           _ => ServerError(statusCode: statusCode, message: message),
         };
 

@@ -21,7 +21,9 @@ class ProductCardSkeleton extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
                 ),
               ),
             ),
@@ -98,7 +100,10 @@ class DetailHeaderSkeleton extends StatelessWidget {
                   const SizedBox(height: 8),
                   const _SkeletonLine(width: double.infinity, height: 14),
                   const SizedBox(height: 8),
-                  _SkeletonLine(width: MediaQuery.sizeOf(context).width * 0.6, height: 14),
+                  _SkeletonLine(
+                    width: MediaQuery.sizeOf(context).width * 0.6,
+                    height: 14,
+                  ),
                 ],
               ),
             ),

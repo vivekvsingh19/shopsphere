@@ -114,9 +114,8 @@ class _CartItemCard extends ConsumerWidget {
                 width: 72,
                 height: 72,
                 fit: BoxFit.cover,
-                placeholder: (_, __) => Container(
-                  color: theme.colorScheme.surfaceContainerHighest,
-                ),
+                placeholder: (_, __) =>
+                    Container(color: theme.colorScheme.surfaceContainerHighest),
                 errorWidget: (_, __, ___) => Container(
                   color: theme.colorScheme.surfaceContainerHighest,
                   child: const Icon(Icons.broken_image_outlined),
@@ -155,7 +154,10 @@ class _CartItemCard extends ConsumerWidget {
                           if (item.quantity <= 1) {
                             notifier.removeItem(item.productId);
                           } else {
-                            notifier.updateQuantity(item.productId, item.quantity - 1);
+                            notifier.updateQuantity(
+                              item.productId,
+                              item.quantity - 1,
+                            );
                           }
                         },
                       ),
@@ -171,7 +173,10 @@ class _CartItemCard extends ConsumerWidget {
                       _SmallQtyButton(
                         icon: Icons.add_rounded,
                         onTap: item.quantity < item.stock
-                            ? () => notifier.updateQuantity(item.productId, item.quantity + 1)
+                            ? () => notifier.updateQuantity(
+                                item.productId,
+                                item.quantity + 1,
+                              )
                             : null,
                       ),
                       const Spacer(),
@@ -189,7 +194,10 @@ class _CartItemCard extends ConsumerWidget {
             // Delete
             IconButton(
               onPressed: () => notifier.removeItem(item.productId),
-              icon: Icon(Icons.delete_outline_rounded, color: theme.colorScheme.error),
+              icon: Icon(
+                Icons.delete_outline_rounded,
+                color: theme.colorScheme.error,
+              ),
               style: IconButton.styleFrom(minimumSize: const Size(48, 48)),
             ),
           ],
@@ -249,7 +257,10 @@ class _CartSummary extends ConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _SummaryRow(label: 'Subtotal', value: '\$${totals.subtotal.toStringAsFixed(2)}'),
+            _SummaryRow(
+              label: 'Subtotal',
+              value: '\$${totals.subtotal.toStringAsFixed(2)}',
+            ),
             if (totals.discount > 0.01)
               _SummaryRow(
                 label: 'Discount',
@@ -269,14 +280,21 @@ class _CartSummary extends ConsumerWidget {
               child: FilledButton(
                 onPressed: checkoutState is CheckoutLoading
                     ? null
-                    : () => ref.read(checkoutNotifierProvider.notifier).checkout(items),
+                    : () => ref
+                          .read(checkoutNotifierProvider.notifier)
+                          .checkout(items),
                 child: checkoutState is CheckoutLoading
                     ? const SizedBox(
                         width: 24,
                         height: 24,
-                        child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.5,
+                          color: Colors.white,
+                        ),
                       )
-                    : Text('Checkout · \$${totals.grandTotal.toStringAsFixed(2)}'),
+                    : Text(
+                        'Checkout · \$${totals.grandTotal.toStringAsFixed(2)}',
+                      ),
               ),
             ),
           ],
@@ -312,10 +330,7 @@ class _SummaryRow extends StatelessWidget {
         children: [
           Text(label, style: style),
           const Spacer(),
-          Text(
-            value,
-            style: style?.copyWith(color: valueColor),
-          ),
+          Text(value, style: style?.copyWith(color: valueColor)),
         ],
       ),
     );

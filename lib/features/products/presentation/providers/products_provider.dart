@@ -10,7 +10,9 @@ import '../../domain/repositories/products_repository.dart';
 
 // ─── DI ───────────────────────────────────────────────────────────────────
 
-final productsRemoteDataSourceProvider = Provider<ProductsRemoteDataSource>((ref) {
+final productsRemoteDataSourceProvider = Provider<ProductsRemoteDataSource>((
+  ref,
+) {
   return ProductsRemoteDataSource(ref.watch(dioProvider));
 });
 
@@ -24,12 +26,12 @@ enum ProductSort { none, priceAsc, priceDesc, ratingDesc, titleAsc }
 
 extension ProductSortLabel on ProductSort {
   String get label => switch (this) {
-        ProductSort.none => 'Default',
-        ProductSort.priceAsc => 'Price: Low to High',
-        ProductSort.priceDesc => 'Price: High to Low',
-        ProductSort.ratingDesc => 'Top Rated',
-        ProductSort.titleAsc => 'Name A–Z',
-      };
+    ProductSort.none => 'Default',
+    ProductSort.priceAsc => 'Price: Low to High',
+    ProductSort.priceDesc => 'Price: High to Low',
+    ProductSort.ratingDesc => 'Top Rated',
+    ProductSort.titleAsc => 'Name A–Z',
+  };
 }
 
 // ─── Filter state ─────────────────────────────────────────────────────────
@@ -116,7 +118,12 @@ class CatalogueNotifier extends StateNotifier<CatalogueState> {
 
   Future<void> load({bool refresh = false}) async {
     if (refresh) {
-      state = state.copyWith(isLoading: true, products: [], skip: 0, clearError: true);
+      state = state.copyWith(
+        isLoading: true,
+        products: [],
+        skip: 0,
+        clearError: true,
+      );
     } else {
       state = state.copyWith(isLoading: true, clearError: true);
     }
@@ -143,7 +150,10 @@ class CatalogueNotifier extends StateNotifier<CatalogueState> {
   void setSearch(String query) {
     _debounce?.cancel();
     state = state.copyWith(filter: state.filter.copyWith(query: query));
-    _debounce = Timer(const Duration(milliseconds: 400), () => load(refresh: true));
+    _debounce = Timer(
+      const Duration(milliseconds: 400),
+      () => load(refresh: true),
+    );
   }
 
   void setCategory(String? slug) {
@@ -180,7 +190,11 @@ class CatalogueNotifier extends StateNotifier<CatalogueState> {
   Future<ProductPage> _fetchPage({required int skip}) async {
     final filter = state.filter;
     if (filter.query.isNotEmpty) {
-      return _repository.searchProducts(filter.query, limit: _pageSize, skip: skip);
+      return _repository.searchProducts(
+        filter.query,
+        limit: _pageSize,
+        skip: skip,
+      );
     }
     if (filter.categorySlug != null) {
       return _repository.getProductsByCategory(
@@ -219,10 +233,10 @@ class CatalogueNotifier extends StateNotifier<CatalogueState> {
 
 final catalogueNotifierProvider =
     StateNotifierProvider<CatalogueNotifier, CatalogueState>((ref) {
-  final notifier = CatalogueNotifier(ref.watch(productsRepositoryProvider));
-  notifier.load();
-  return notifier;
-});
+      final notifier = CatalogueNotifier(ref.watch(productsRepositoryProvider));
+      notifier.load();
+      return notifier;
+    });
 
 // ─── Categories ───────────────────────────────────────────────────────────
 

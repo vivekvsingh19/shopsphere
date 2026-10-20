@@ -51,7 +51,9 @@ class ProfileScreen extends ConsumerWidget {
                           : null,
                       child: user.image == null
                           ? Text(
-                              user.firstName.isNotEmpty ? user.firstName[0].toUpperCase() : '?',
+                              user.firstName.isNotEmpty
+                                  ? user.firstName[0].toUpperCase()
+                                  : '?',
                               style: theme.textTheme.displaySmall?.copyWith(
                                 color: theme.colorScheme.onPrimaryContainer,
                                 fontWeight: FontWeight.w700,
@@ -134,7 +136,9 @@ class ProfileScreen extends ConsumerWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Sign out?'),
-        content: const Text('You will need to sign in again to access ShopSphere.'),
+        content: const Text(
+          'You will need to sign in again to access ShopSphere.',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),

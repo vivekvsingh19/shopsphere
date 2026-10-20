@@ -108,16 +108,13 @@ class CartNotifier extends StateNotifier<List<CartItem>> {
     _local.clearCart();
   }
 
-  int get totalItemCount =>
-      state.fold(0, (sum, item) => sum + item.quantity);
+  int get totalItemCount => state.fold(0, (sum, item) => sum + item.quantity);
 }
 
 final cartNotifierProvider =
     StateNotifierProvider<CartNotifier, List<CartItem>>((ref) {
-  return CartNotifier(
-    ref.watch(cartLocalDataSourceProvider),
-  );
-});
+      return CartNotifier(ref.watch(cartLocalDataSourceProvider));
+    });
 
 final cartItemCountProvider = Provider<int>((ref) {
   return ref.watch(cartNotifierProvider.notifier).totalItemCount;
@@ -126,7 +123,8 @@ final cartItemCountProvider = Provider<int>((ref) {
 // ─── Checkout notifier ────────────────────────────────────────────────────
 
 class CheckoutNotifier extends StateNotifier<CheckoutState> {
-  CheckoutNotifier(this._remote, this._cartNotifier) : super(const CheckoutIdle());
+  CheckoutNotifier(this._remote, this._cartNotifier)
+    : super(const CheckoutIdle());
 
   final CartRemoteDataSource _remote;
   final CartNotifier _cartNotifier;
@@ -153,8 +151,8 @@ class CheckoutNotifier extends StateNotifier<CheckoutState> {
 
 final checkoutNotifierProvider =
     StateNotifierProvider<CheckoutNotifier, CheckoutState>((ref) {
-  return CheckoutNotifier(
-    ref.watch(cartRemoteDataSourceProvider),
-    ref.watch(cartNotifierProvider.notifier),
-  );
-});
+      return CheckoutNotifier(
+        ref.watch(cartRemoteDataSourceProvider),
+        ref.watch(cartNotifierProvider.notifier),
+      );
+    });

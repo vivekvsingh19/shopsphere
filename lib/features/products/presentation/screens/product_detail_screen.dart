@@ -14,7 +14,8 @@ class ProductDetailScreen extends ConsumerStatefulWidget {
   final int productId;
 
   @override
-  ConsumerState<ProductDetailScreen> createState() => _ProductDetailScreenState();
+  ConsumerState<ProductDetailScreen> createState() =>
+      _ProductDetailScreenState();
 }
 
 class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
@@ -44,14 +45,19 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
           if (err is NotFoundError) {
             return Scaffold(
               appBar: AppBar(),
-              body: AppErrorWidget(error: err, onRetry: () => ref.invalidate(productDetailProvider(widget.productId))),
+              body: AppErrorWidget(
+                error: err,
+                onRetry: () =>
+                    ref.invalidate(productDetailProvider(widget.productId)),
+              ),
             );
           }
           return Scaffold(
             appBar: AppBar(),
             body: AppErrorWidget(
               error: err,
-              onRetry: () => ref.invalidate(productDetailProvider(widget.productId)),
+              onRetry: () =>
+                  ref.invalidate(productDetailProvider(widget.productId)),
             ),
           );
         },
@@ -69,7 +75,11 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
         SliverAppBar(
           expandedHeight: 0,
           pinned: true,
-          title: Text(product.title, maxLines: 1, overflow: TextOverflow.ellipsis),
+          title: Text(
+            product.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
 
         SliverToBoxAdapter(
@@ -85,17 +95,24 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                     child: PageView.builder(
                       controller: _pageController,
                       itemCount: product.images.length,
-                      onPageChanged: (i) => setState(() => _currentImageIndex = i),
+                      onPageChanged: (i) =>
+                          setState(() => _currentImageIndex = i),
                       itemBuilder: (_, i) => CachedNetworkImage(
                         imageUrl: product.images[i],
                         fit: BoxFit.contain,
                         placeholder: (_, _) => Container(
                           color: colorScheme.surfaceContainerHighest,
-                          child: const Center(child: CircularProgressIndicator()),
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
                         errorWidget: (_, __, _) => Container(
                           color: colorScheme.surfaceContainerHighest,
-                          child: Icon(Icons.broken_image_outlined, size: 64, color: colorScheme.onSurfaceVariant),
+                          child: Icon(
+                            Icons.broken_image_outlined,
+                            size: 64,
+                            color: colorScheme.onSurfaceVariant,
+                          ),
                         ),
                       ),
                     ),
@@ -116,7 +133,9 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                             decoration: BoxDecoration(
                               color: i == _currentImageIndex
                                   ? colorScheme.primary
-                                  : colorScheme.onSurface.withValues(alpha: 0.25),
+                                  : colorScheme.onSurface.withValues(
+                                      alpha: 0.25,
+                                    ),
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
@@ -170,8 +189,8 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                             full
                                 ? Icons.star_rounded
                                 : half
-                                    ? Icons.star_half_rounded
-                                    : Icons.star_outline_rounded,
+                                ? Icons.star_half_rounded
+                                : Icons.star_outline_rounded,
                             color: Colors.amber.shade600,
                             size: 22,
                           );
@@ -209,7 +228,10 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                           ),
                           const SizedBox(width: 8),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 3,
+                            ),
                             decoration: BoxDecoration(
                               color: colorScheme.error,
                               borderRadius: BorderRadius.circular(6),
@@ -244,7 +266,9 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                               ? '${product.stock} in stock'
                               : 'Out of stock',
                           style: theme.textTheme.bodyMedium?.copyWith(
-                            color: product.inStock ? Colors.green.shade700 : colorScheme.error,
+                            color: product.inStock
+                                ? Colors.green.shade700
+                                : colorScheme.error,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -398,17 +422,15 @@ class _QuantitySelector extends StatelessWidget {
               ? null
               : () => onChanged!(quantity - 1),
           icon: const Icon(Icons.remove_rounded),
-          style: IconButton.styleFrom(
-            minimumSize: const Size(48, 48),
-          ),
+          style: IconButton.styleFrom(minimumSize: const Size(48, 48)),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             '$quantity',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
           ),
         ),
         IconButton.outlined(
@@ -416,9 +438,7 @@ class _QuantitySelector extends StatelessWidget {
               ? null
               : () => onChanged!(quantity + 1),
           icon: const Icon(Icons.add_rounded),
-          style: IconButton.styleFrom(
-            minimumSize: const Size(48, 48),
-          ),
+          style: IconButton.styleFrom(minimumSize: const Size(48, 48)),
         ),
       ],
     );
@@ -441,7 +461,9 @@ class _AddToCartButton extends ConsumerWidget {
     return FilledButton.icon(
       onPressed: enabled
           ? () {
-              ref.read(cartNotifierProvider.notifier).addItem(product, quantity: quantity);
+              ref
+                  .read(cartNotifierProvider.notifier)
+                  .addItem(product, quantity: quantity);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('${product.title} added to cart'),

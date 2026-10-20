@@ -77,7 +77,7 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
       ),
     ];
 
-    Widget body = _CatalogueBody(
+    final Widget body = _CatalogueBody(
       scrollController: _scrollController,
       searchController: _searchController,
     );
@@ -103,18 +103,20 @@ class _CatalogueScreenState extends ConsumerState<CatalogueScreen> {
                       Text(
                         'ShopSphere',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 const Divider(),
-                ...navDestinations.map((d) => NavigationDrawerDestination(
-                      icon: d.icon,
-                      selectedIcon: d.selectedIcon,
-                      label: Text(d.label),
-                    )),
+                ...navDestinations.map(
+                  (d) => NavigationDrawerDestination(
+                    icon: d.icon,
+                    selectedIcon: d.selectedIcon,
+                    label: Text(d.label),
+                  ),
+                ),
               ],
             ),
             Expanded(child: body),
@@ -201,7 +203,11 @@ class _CatalogueBody extends ConsumerWidget {
     final notifier = ref.read(catalogueNotifierProvider.notifier);
     final categoriesAsync = ref.watch(categoriesProvider);
     final layoutWidth = MediaQuery.sizeOf(context).width;
-    final crossAxisCount = layoutWidth < 600 ? 2 : layoutWidth < 840 ? 3 : 4;
+    final crossAxisCount = layoutWidth < 600
+        ? 2
+        : layoutWidth < 840
+        ? 3
+        : 4;
 
     return RefreshIndicator(
       onRefresh: () => notifier.load(refresh: true),
@@ -266,7 +272,10 @@ class _CatalogueBody extends ConsumerWidget {
               state.filter.categorySlug != null)
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
                 child: Wrap(
                   spacing: 8,
                   children: [
@@ -289,8 +298,8 @@ class _CatalogueBody extends ConsumerWidget {
                 child: Text(
                   '${state.total} products',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ),
             ),
@@ -343,18 +352,15 @@ class _CatalogueBody extends ConsumerWidget {
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
                 ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final product = state.products[index];
-                    return ProductCard(
-                      product: product,
-                      onTap: () => context.push(
-                        kProductDetailPath.replaceAll(':id', '${product.id}'),
-                      ),
-                    );
-                  },
-                  childCount: state.products.length,
-                ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final product = state.products[index];
+                  return ProductCard(
+                    product: product,
+                    onTap: () => context.push(
+                      kProductDetailPath.replaceAll(':id', '${product.id}'),
+                    ),
+                  );
+                }, childCount: state.products.length),
               ),
             ),
 
@@ -390,8 +396,8 @@ class _CatalogueBody extends ConsumerWidget {
                 child: Text(
                   'Sort by',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w600,
-                      ),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               ...ProductSort.values.map(

@@ -6,7 +6,10 @@ class ProductsRemoteDataSource {
   ProductsRemoteDataSource(this._dio);
   final Dio _dio;
 
-  Future<ProductListResponse> getProducts({int limit = 20, int skip = 0}) async {
+  Future<ProductListResponse> getProducts({
+    int limit = 20,
+    int skip = 0,
+  }) async {
     final response = await _dio.get<Map<String, dynamic>>(
       '/products',
       queryParameters: {'limit': limit, 'skip': skip},

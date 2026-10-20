@@ -25,7 +25,11 @@ class ProductsRepositoryImpl implements ProductsRepository {
     int skip = 0,
   }) async {
     try {
-      final response = await _remote.getProductsByCategory(slug, limit: limit, skip: skip);
+      final response = await _remote.getProductsByCategory(
+        slug,
+        limit: limit,
+        skip: skip,
+      );
       return _toPage(response);
     } catch (e) {
       throw ErrorHandler.handle(e);
@@ -39,7 +43,11 @@ class ProductsRepositoryImpl implements ProductsRepository {
     int skip = 0,
   }) async {
     try {
-      final response = await _remote.searchProducts(query, limit: limit, skip: skip);
+      final response = await _remote.searchProducts(
+        query,
+        limit: limit,
+        skip: skip,
+      );
       return _toPage(response);
     } catch (e) {
       throw ErrorHandler.handle(e);

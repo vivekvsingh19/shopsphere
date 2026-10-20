@@ -6,7 +6,6 @@ import '../../../auth/data/repositories/auth_repository_impl.dart';
 import '../../../auth/domain/entities/user.dart';
 import '../../../auth/domain/repositories/auth_repository.dart';
 
-
 final profileRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepositoryImpl(
     AuthRemoteDataSource(ref.watch(dioProvider)),

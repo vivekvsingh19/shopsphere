@@ -19,7 +19,9 @@ final secureStorageServiceProvider = Provider<SecureStorageService>((ref) {
 });
 
 final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
-  throw UnimplementedError('Override sharedPreferencesProvider in ProviderScope');
+  throw UnimplementedError(
+    'Override sharedPreferencesProvider in ProviderScope',
+  );
 });
 
 final dioProvider = Provider<Dio>((ref) {
