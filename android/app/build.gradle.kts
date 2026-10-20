@@ -22,7 +22,7 @@ android {
     defaultConfig {
         applicationId = "com.prosessed.shopsphere"
         // minSdk 23 required by flutter_secure_storage
-        minSdk = 23
+        minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
